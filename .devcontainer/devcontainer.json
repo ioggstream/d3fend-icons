@@ -1,0 +1,12 @@
+{
+  "name": "d3f-iconify",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code"
+      ]
+    }
+  },
+  "postCreateCommand": "corepack enable && node --version && pnpm --version"
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>d3f icon pack — mermaid validation</title>
+</head>
+<body>
+  <h1>d3f icon pack validation</h1>
+  <pre class="mermaid">
+flowchart LR
+  A@{ icon: "d3f:DigitalArtifact", form: "square", label: "DigitalArtifact" }
+  B@{ icon: "d3f:DefensiveTechnique", form: "square", label: "DefensiveTechnique" }
+  C@{ icon: "d3f:OffensiveTechnique", form: "square", label: "OffensiveTechnique" }
+  A --> B --> C
+  </pre>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const d3fIcons = {
+      "prefix": "d3f",
+      "width": 24,
+      "height": 24,
+      "icons": {
+        "DigitalArtifact": {
+          "body": "<path fill=\"currentColor\" d=\"M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z\"/>"
+        },
+        "DefensiveTechnique": {
+          "body": "<path fill=\"currentColor\" d=\"M21 11c0 5.55-3.84 10.74-9 12c-5.16-1.26-9-6.45-9-12V5l9-4l9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21\"/>"
+        },
+        "OffensiveTechnique": {
+          "body": "<path fill=\"currentColor\" d=\"m6.2 2.44l11.9 11.9l2.12-2.12l1.41 1.41l-2.47 2.47l3.18 3.18c.39.39.39 1.02 0 1.41l-.71.71a.996.996 0 0 1-1.41 0L17 18.23l-2.44 2.47l-1.41-1.41l2.12-2.12l-11.9-11.9V2.44zM15.89 10l4.74-4.74V2.44H17.8l-4.74 4.74zm-4.95 5l-2.83-2.87l-2.21 2.21l-2.12-2.12l-1.41 1.41l2.47 2.47l-3.18 3.19a.996.996 0 0 0 0 1.41l.71.71c.39.39 1.02.39 1.41 0L7 18.23l2.44 2.47l1.41-1.41l-2.12-2.12z\"/>"
+        }
+      }
+    };
+
+    mermaid.registerIconPacks([
+      { name: 'd3f', icons: d3fIcons }
+    ]);
+
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>
