@@ -1,0 +1,27 @@
+export default {
+  User: 'mdi:account',
+  UserAccount: 'mdi:account',
+  PrivilegedUserAccount: 'mdi:account-key',
+  /* Artifacts */
+  DigitalArtifact: 'mdi:file-document-outline',
+  DefensiveTechnique: 'mdi:shield-outline',
+  OffensiveTechnique: 'mdi:sword-cross',
+  CodeRepository: 'mdi:source-repository',
+  StaticAnalysisTool: 'mdi:code-tags-check',
+  CredentialScrubbing: 'mdi:key-alert',
+  AssetVulnerabilityEnumeration: 'mdi:package-variant',
+  DynamicAnalysisTool: 'mdi:code-braces-box',
+  TestRunner: 'mdi:test-tube',
+  FileFormatVerification: 'mdi:format-align-left',
+  /* Credentials and Access Control */
+  Credential: 'mdi:key-variant',
+  PrivateKey: 'mdi:key',
+  PublicKey: 'mdi:key-outline',
+  Password: 'mdi:form-textbox-password',
+  MultiFactorAuthentication: 'mdi:two-factor-authentication',
+  ServiceApplication: 'mdi:server',
+  AccessControlConfiguration: 'mdi:shield-account',
+  Software: 'mdi:file-upload-outline',
+  Process: 'mdi:gear',
+  CodeAnalyzer: 'mdi:gavel',
+};

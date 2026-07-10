@@ -8,5 +8,5 @@
       ]
     }
   },
-  "postCreateCommand": "corepack enable && node --version && pnpm --version"
+  // "postCreateCommand": "corepack enable --install-directory . && node --version && pnpm --version"
 }

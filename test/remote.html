@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>d3f icon pack — mermaid validation</title>
+</head>
+<body>
+  <h1>d3f icon pack validation</h1>
+  <pre class="mermaid">
+flowchart LR
+  A@{ icon: "d3f:DigitalArtifact", form: "square", label: "DigitalArtifact" }
+  B@{ icon: "d3f:DefensiveTechnique", form: "square", label: "DefensiveTechnique" }
+  C@{ icon: "d3f:OffensiveTechnique", form: "square", label: "OffensiveTechnique" }
+  A --> B --> C
+  </pre>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const res = await fetch('https://cdn.jsdelivr.net/gh/ioggstream/d3fend-icons@main/icons.json');
+    const d3fIcons = await res.json();
+
+    mermaid.registerIconPacks([
+      { name: 'd3f', icons: d3fIcons }
+    ]);
+
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>
