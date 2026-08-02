@@ -8,13 +8,31 @@ in a mermaid diagram resolves to the icon named `DigitalArtifact` in this set.
 
 ## Current scope
 
-Minimal validation slice — 3 icons, each sourced from
-[Material Design Icons](https://github.com/Templarian/MaterialDesign) (`mdi`,
-Apache-2.0) via the Iconify API:
+Minimal validation slice — 3 icons. `icons.json` is generated (not
+hand-edited) from [icon-mapping.json](icon-mapping.json), which maps each
+D3FEND local name to a source icon from an installed
+[Iconify](https://iconify.design) collection:
 
 - `DigitalArtifact` — `mdi:file-document-outline`
 - `DefensiveTechnique` — `mdi:shield-outline`
 - `OffensiveTechnique` — `mdi:sword-cross`
+
+All 3 are sourced from
+[Material Design Icons](https://github.com/Templarian/MaterialDesign) (`mdi`,
+Apache-2.0), pulled from the `@iconify-json/mdi` package.
+
+### Regenerating icons.json
+
+```sh
+pnpm install
+pnpm run build
+```
+
+`scripts/build.mjs` reads `icon-mapping.json`, resolves each `<prefix>:<name>`
+against the corresponding `@iconify-json/<prefix>` package, and writes the
+resulting icon bodies to `icons.json`. To add a class, add an entry to
+`icon-mapping.json` (installing the matching `@iconify-json/<prefix>` package
+first if it isn't already a devDependency) and rerun the build.
 
 ## Installation
 
@@ -60,8 +78,9 @@ change underneath you.
 
 ## Validation
 
-Open [test/validate.html](test/validate.html) in a browser to render a
-diagram using all 3 icons and confirm they resolve correctly.
+Open [test/local.html](test/local.html) (inlines `icons.json` directly) or
+[test/remote.html](test/remote.html) (fetches it from jsDelivr) in a browser
+to render a diagram using all 3 icons and confirm they resolve correctly.
 
 ## Development environment
 

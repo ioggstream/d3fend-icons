@@ -11,12 +11,17 @@
   },
   "files": [
     "icons.json",
+    "d3f",
     "src"
   ],
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "build:svgs": "node scripts/build-svgs.mjs",
+    "build:diagrams": "node scripts/build-diagrams.mjs",
+    "build:all": "npm run build && npm run build:svgs && npm run build:diagrams"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.2.3",
     "@iconify/utils": "^3.1.4"
   },
   "license": "MIT"

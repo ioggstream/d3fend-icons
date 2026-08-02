@@ -1,13 +1,53 @@
-import { readFileSync } from 'node:fs';
-import { validateIconSet } from '@iconify/utils';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { getIconData, validateIconSet } from '@iconify/utils';
 
-const data = JSON.parse(readFileSync(new URL('../icons.json', import.meta.url), 'utf8'));
+const iconsPath = fileURLToPath(new URL('../icons.json', import.meta.url));
+
+const { default: mapping } = await import('../icon-mapping.js');
+
+const sourceSets = new Map();
+
+function loadSourceSet(sourcePrefix) {
+  if (!sourceSets.has(sourcePrefix)) {
+    const setPath = import.meta.resolve(`@iconify-json/${sourcePrefix}/icons.json`);
+    sourceSets.set(sourcePrefix, JSON.parse(readFileSync(fileURLToPath(setPath), 'utf8')));
+  }
+  return sourceSets.get(sourcePrefix);
+}
+
+const SET_WIDTH = 24;
+const SET_HEIGHT = 24;
+
+const icons = {};
+
+for (const [d3fendName, iconId] of Object.entries(mapping)) {
+  const [sourcePrefix, sourceName] = iconId.split(':');
+  if (!sourcePrefix || !sourceName) {
+    throw new Error(`Invalid icon id "${iconId}" for "${d3fendName}", expected "<prefix>:<name>"`);
+  }
+
+  const sourceSet = loadSourceSet(sourcePrefix);
+  const iconData = getIconData(sourceSet, sourceName);
+  if (!iconData) {
+    throw new Error(`Icon "${sourceName}" not found in "${sourcePrefix}" icon set (mapped from "${d3fendName}")`);
+  }
+
+  // Drop width/height when they match the set-level default to keep icons.json minimal.
+  if (iconData.width === SET_WIDTH) delete iconData.width;
+  if (iconData.height === SET_HEIGHT) delete iconData.height;
+
+  icons[d3fendName] = iconData;
+}
+
+const data = {
+  prefix: 'd3f',
+  width: SET_WIDTH,
+  height: SET_HEIGHT,
+  icons,
+};
 
 const result = validateIconSet(data);
-
-if (data.prefix !== 'd3f') {
-  throw new Error(`Expected prefix "d3f", got "${data.prefix}"`);
-}
 
 for (const name of Object.keys(result.icons)) {
   if (!/^[A-Za-z][A-Za-z0-9]*$/.test(name)) {
@@ -15,4 +55,6 @@ for (const name of Object.keys(result.icons)) {
   }
 }
 
-console.log(`d3f-iconify: icons.json is valid — ${Object.keys(result.icons).length} icon(s).`);
+writeFileSync(iconsPath, JSON.stringify(data, null, 2) + '\n');
+
+console.log(`d3f-iconify: icons.json generated — ${Object.keys(result.icons).length} icon(s).`);
