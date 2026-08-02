@@ -17,6 +17,7 @@ export default {
   Credential: 'mdi:key-variant',
   PrivateKey: 'mdi:key',
   PublicKey: 'mdi:key-outline',
+  /* checkov:skip=CKV_SECRET_6: This is an icon name. */
   Password: 'mdi:form-textbox-password',
   MultiFactorAuthentication: 'mdi:two-factor-authentication',
   ServiceApplication: 'mdi:server',
