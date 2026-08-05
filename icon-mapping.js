@@ -25,4 +25,18 @@ export default {
   Software: 'mdi:file-upload-outline',
   Process: 'mdi:gear',
   CodeAnalyzer: 'mdi:gavel',
+  /* Network and Communication */
+  ComputerNetworkNode: 'mdi:server-network',
+  Firewall: 'mdi:wall-fire',
+  Router: 'mdi:router',
+  WirelessRouter: 'mdi:router-wireless',
+  Switch: 'mdi:switch',
+  IPAddress: 'mdi:ip',
+  /* Services */
+  DatabaseService: 'mdi:database',
+  Database: 'mdi:database',
+  Volume: 'mdi:harddisk',
+  WebServer: 'mdi:web',
+  /* Software */
+
 };
