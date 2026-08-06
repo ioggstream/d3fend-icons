@@ -50,7 +50,8 @@ const data = {
 const result = validateIconSet(data);
 
 for (const name of Object.keys(result.icons)) {
-  if (!/^[A-Za-z][A-Za-z0-9]*$/.test(name)) {
+  // D3FEND local names are CamelCase and may contain hyphens (Multi-factorAuthentication).
+  if (!/^[A-Za-z][A-Za-z0-9-]*$/.test(name)) {
     throw new Error(`Icon name "${name}" is not a valid D3FEND local name`);
   }
 }
